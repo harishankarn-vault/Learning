@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 // Defining node struct string_node
 typedef struct string_node{
@@ -15,7 +16,7 @@ typedef struct car_details{
 	char *car_price; // car price
 	char *car_range; // car range
     */
-   
+
 }car_details;
 
 // Defining car_node struct
@@ -25,31 +26,78 @@ typedef struct car_node{
 
 }car_node;
 
+// Defining global variables
+car_node *head = NULL; // head of the linked list
+car_node *tail = NULL; // tail of the linked list
+
 void swap(car_details **a, car_details **b) {
     car_details *temp = *a;
     *a = *b;
     *b = temp;
 }
 
+void swap(int *a, int *b) {
+    printf("address of a=%p\n",a);
+    printf("address of b=%p\n",b);
+    
+    int *temp = a;
+    a = b;
+    *b = *temp;
+
+    printf("\nafter swap\n");
+    printf("address of a=%p\n",a);
+    printf("address of b=%p\n",b);
+
+}
+
 car_node *get_tail(car_node *head){
-    car_node *current = head;
-    while(current->next_car != NULL){
-        current = current->next_car;
+    while(head->next_car != NULL){
+        head = head->next_car;
     }
-    return current;
+    return head;
 }
 
-void string_sorting(car_node *head){
-    car_details *temp;
-    car_node *current1,*current2;
+car_node* partition(car_node* head,car_node* tail) {
 
-    // Quick sort
+    car_node *pivot=tail;
+    car_node *prev=head; // represents i
+    car_node *current=head->next_car; // represents j
+
+    while(current!=tail->next_car){
+        if(pivot->car_data->car_name > current->car_data->car_name){
+
+            //swap();
+        }
+    }
+
+    return pivot;
 }
 
-/*car_node* partition(car_node* head,car_node* end, car_node** newHead, car_node** newEnd) {
-    car_node* pivot = get_tail(head);
-    printf("Pivot: %s\n", pivot->car_data->car_brand);
-}*/
+void quicksort_algo(car_node *head, car_node*tail){
+    if (head==NULL || head==tail || head==tail)
+        return;
+
+
+}
+//     if(head==tail)
+//         return;
+
+//     car_node *pivot=partition(head,tail);
+//     quicksort_algo(head,pivot);
+//     quicksort_algo(pivot->next_car,tail);
+// }
+
+// car_node *quick_sort(car_node* head) {
+
+//     car_node *pivot=partition(head,tail);
+    
+//     return head;
+
+// }
+// }
+// }
+// }
+// }
 
 car_node *create_car_node(car_details *carDetails){
     car_node *newNode= (car_node *)malloc(sizeof(car_node)); 
@@ -68,16 +116,27 @@ void print_list(car_node *head) {
     }
 }
 
-int main(){
-    car_details *carDetails = (car_details *)malloc(sizeof(car_details));
+/*int main(){
 
-    car_node *head = create_car_node("Ford");
-    head->next_car = create_car_node("Toyota");
-    head->next_car->next_car = create_car_node("Honda");
-    head->next_car->next_car->next_car = create_car_node("BMW");
-    head->next_car->next_car->next_car->next_car = create_car_node("Audi");
+    head = create_car_node(&(car_details){"Ford"});
+    tail = get_tail(head);
 
+    head->next_car = create_car_node(&(car_details){"Toyota"});
+    head->next_car->next_car = create_car_node(&(car_details){"Honda"});
+    head->next_car->next_car->next_car = create_car_node(&(car_details){"BMW"});
+    head->next_car->next_car->next_car->next_car = create_car_node(&(car_details){"Audi"});
+
+    head = quick_sort(head);
     print_list(head);
     return 0;
- //   printf(partition());
+
+}*/
+
+int main(){
+    int a=3, b=6;
+    printf("before swap\n");
+    printf("a=%d \nb=%d\n",a,b);
+    swap(&a,&b);
+    printf("\nafter swap\n");
+    printf("a=%d \nb=%d\n",a,b);
 }

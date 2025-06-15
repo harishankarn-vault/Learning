@@ -1,29 +1,28 @@
-#include<stdio.h>
+#include <stdio.h>
+int main()
 
-void swap(int *px,int *py);
-void swap(int *px,int *py){
-	int temp;
-	temp=*px;
-	*px=*py;
-	*py=temp;	
-}
-int main(){
-	int a=88,b=99,x=1,y=2,z[10];
-	z[0]=5;
-	int *ip; //ip is a pointer to int
+{
+    int *p, nA = 5;
+    int* pnA = &nA;
+    int** ppnB = &pnA;
+	int ***ppnC=&ppnB;
 
-	ip=&x; //ip now points to x
+    printf("Values of variables \n");
+    printf("p Value of *p = %p \n", *p);
+    printf("p Value of *p = %d \n", *p);
+    printf("p Value of nA = %p \n", nA);
+    printf("d Value of nA = %d \n", nA);
+    printf("p Value of A *pnA (from its pointer) = %p \n", *pnA);
+    printf("d Value of A *pnA (from its pointer) = %d \n", *pnA);
+    printf("d Value of A &ppnB (from its pointer to pointer) = %d \n", &ppnB);
+    printf("p Value of A &ppnB (from its pointer to pointer) = %p \n", &ppnB);
+    printf("d Value of A **ppnB (from its pointer to pointer) = %d \n", **ppnB);
+	printf("d value of A ***ppnC = %d\n",***ppnC);
 
-	y=*ip; //y now has ip value which has x value which is 1
-
-	*ip=0; //ip now equals 0 which is pointed to x which is now 0
-	ip = &z[0]; //ip now hsa value of z[0] which is 5
-	
-	*ip+=10;
-
-	swap(&a,&b);
-
-	printf("x=%d y=%d z=%d\n",x,y,z[0]);
-	printf("a=%d b=%d\n",a,b);
-	return 0;
+    printf("Adress of variables \n");
+    printf("d Address of A = %d \n",pnA);
+    printf("x Address of A = %x \n",pnA);
+    printf("p Adress of Pointer to A = %p \n", (void*)pnA);
+    printf("p Adress of Pointer Pointer to A = %p \n", (void*)ppnB);
+    printf("p Adress of Pointer to A (from is pointer to pointer) = %p \n", (void*)*ppnB);
 }
